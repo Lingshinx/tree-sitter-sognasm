@@ -1,0 +1,351 @@
+[
+  {
+    "type": "Call",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "CapFromCapped",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "offset",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "Capped",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "PushCapped",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "Capture",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "offset",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "Char",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "escape_sequence",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "Func",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "Local",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "Push",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "Push",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "offset",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "PushCapped",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "offset",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "String",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "escape_sequence",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "content",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "Byte",
+          "named": true
+        },
+        {
+          "type": "Call",
+          "named": true
+        },
+        {
+          "type": "CapFromCapped",
+          "named": true
+        },
+        {
+          "type": "Capped",
+          "named": true
+        },
+        {
+          "type": "Capture",
+          "named": true
+        },
+        {
+          "type": "Char",
+          "named": true
+        },
+        {
+          "type": "Cmd",
+          "named": true
+        },
+        {
+          "type": "Func",
+          "named": true
+        },
+        {
+          "type": "Local",
+          "named": true
+        },
+        {
+          "type": "Num",
+          "named": true
+        },
+        {
+          "type": "Push",
+          "named": true
+        },
+        {
+          "type": "PushCapped",
+          "named": true
+        },
+        {
+          "type": "String",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "escape_sequence",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "label",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "source_file",
+    "named": true,
+    "root": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "stmt",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "stmt",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "content",
+          "named": true
+        },
+        {
+          "type": "label",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "\n",
+    "named": false
+  },
+  {
+    "type": "\"",
+    "named": false
+  },
+  {
+    "type": "#",
+    "named": false
+  },
+  {
+    "type": "$",
+    "named": false
+  },
+  {
+    "type": "'",
+    "named": false
+  },
+  {
+    "type": "(",
+    "named": false
+  },
+  {
+    "type": ")",
+    "named": false
+  },
+  {
+    "type": ":",
+    "named": false
+  },
+  {
+    "type": "Byte",
+    "named": true
+  },
+  {
+    "type": "Cmd",
+    "named": true
+  },
+  {
+    "type": "Num",
+    "named": true
+  },
+  {
+    "type": "[",
+    "named": false
+  },
+  {
+    "type": "\\\"",
+    "named": false
+  },
+  {
+    "type": "\\'",
+    "named": false
+  },
+  {
+    "type": "]",
+    "named": false
+  },
+  {
+    "type": "comment",
+    "named": true,
+    "extra": true
+  },
+  {
+    "type": "identifier",
+    "named": true
+  },
+  {
+    "type": "offset",
+    "named": true
+  },
+  {
+    "type": "{",
+    "named": false
+  },
+  {
+    "type": "}",
+    "named": false
+  }
+]

@@ -1,0 +1,82 @@
+main {
+  Flush Print "Please Input: "
+  fact read_number
+  Print "factorial of your input is "
+  Output
+}
+
+println {
+  Print 
+  Print '\n'
+}
+
+one { 1 }
+zero { 0 }
+
+drop {
+  Pop
+}
+
+it { #0 }
+
+do { $0 Pop }
+
+nothing : Ret
+
+when {
+  Pop; $0 = cond
+  Pop; $1 = func
+  do If $0 $[1] (it) (nothing)
+}
+
+fibo {
+  Pop; $0 = x
+  do If Le $0 2 (one) $[0] (fibo_other)
+}
+
+fibo_other {
+  Add fibo Sub #0 1 fibo Sub #0 2
+}
+
+fact {
+  Pop; $0 = x
+  do If Le $0 1 (one) $[0] (fact_other)
+}
+
+fact_other {
+  Mul #0 fact Sub #0 1
+}
+
+read_number {
+  Pop Input
+  to_digit $0
+  do If is_digit $0 (start_read) (error)
+}
+
+error {
+  Print "not a number"
+  End
+}
+
+start_read {
+  Pop Input
+  to_digit $0
+  do If is_digit $0 (keep_read) (drop)
+}
+
+keep_read {
+  Pop Pop
+  Mul 10 $1
+  Add $0
+  start_read
+}
+
+is_digit {
+  Pop; $0 = x
+      Ge $0 '0'
+  And Le $0 '9' ; return x >= 0 && x <= 9
+}
+
+to_digit {
+  SubBy '0'
+}
