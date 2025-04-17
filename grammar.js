@@ -4,38 +4,44 @@
  * @license MIT
  */
 
-import { bracket, separatedBy, parent, quote, singleQuote, newline } from './grammar/util.js'
+import { bracket, separatedBy, parent, quote, singleQuote } from './grammar/util.js'
 
 export default grammar({
   name: "sognasm",
 
-  extras: $ => [' ', '\t', $.comment],
+  extras: $ => [' ', '\t', '\r', $.comment],
 
   confilict: $ => [[$.Num, $.offset]],
 
   rules: {
-    source_file: $ => separatedBy(/\n+/)($.stmt),
+    source_file: $ => $._block,
+    _block: $ => seq(/\n*/, separatedBy(/\n+/)($.stmt)),
 
     comment: _ => /;[^\n]*/,
 
     stmt: $ => choice(
+      $.function,
       seq(
-        optional($.label),
-        $.content,
-        optional('}')
+        $.label,
+        /\n*/,
+        $._content
       ),
-      '}'
+      $._content
+    ),
+
+    function: $ => seq(
+      field("name", $.identifier),
+      "{", $._block, "}"
     ),
 
     label: $ => seq(
       $.identifier,
-      choice(':', '{'),
-      /\n*/,
+      ":"
     ),
 
     identifier: _ => /[a-z_]+/,
 
-    content: $ => repeat1(
+    _content: $ => repeat1(
       choice(
         $.Call,
         $.Cmd,

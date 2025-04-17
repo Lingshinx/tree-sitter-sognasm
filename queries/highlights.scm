@@ -10,6 +10,7 @@
 ] @punctuation.bracket
 
 (label (identifier) @label) 
+(function name: (identifier) @function)
 
 [(Call) (Func)] @function
 

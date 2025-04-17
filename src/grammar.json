@@ -3,37 +3,50 @@
   "name": "sognasm",
   "rules": {
     "source_file": {
+      "type": "SYMBOL",
+      "name": "_block"
+    },
+    "_block": {
       "type": "SEQ",
       "members": [
         {
-          "type": "SYMBOL",
-          "name": "stmt"
+          "type": "PATTERN",
+          "value": "\\n*"
         },
         {
-          "type": "REPEAT",
-          "content": {
-            "type": "SEQ",
-            "members": [
-              {
-                "type": "PATTERN",
-                "value": "\\n+"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "stmt"
-              }
-            ]
-          }
-        },
-        {
-          "type": "CHOICE",
+          "type": "SEQ",
           "members": [
             {
-              "type": "PATTERN",
-              "value": "\\n+"
+              "type": "SYMBOL",
+              "name": "stmt"
             },
             {
-              "type": "BLANK"
+              "type": "REPEAT",
+              "content": {
+                "type": "SEQ",
+                "members": [
+                  {
+                    "type": "PATTERN",
+                    "value": "\\n+"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "stmt"
+                  }
+                ]
+              }
+            },
+            {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "PATTERN",
+                  "value": "\\n+"
+                },
+                {
+                  "type": "BLANK"
+                }
+              ]
             }
           ]
         }
@@ -47,37 +60,50 @@
       "type": "CHOICE",
       "members": [
         {
+          "type": "SYMBOL",
+          "name": "function"
+        },
+        {
           "type": "SEQ",
           "members": [
             {
-              "type": "CHOICE",
-              "members": [
-                {
-                  "type": "SYMBOL",
-                  "name": "label"
-                },
-                {
-                  "type": "BLANK"
-                }
-              ]
+              "type": "SYMBOL",
+              "name": "label"
+            },
+            {
+              "type": "PATTERN",
+              "value": "\\n*"
             },
             {
               "type": "SYMBOL",
-              "name": "content"
-            },
-            {
-              "type": "CHOICE",
-              "members": [
-                {
-                  "type": "STRING",
-                  "value": "}"
-                },
-                {
-                  "type": "BLANK"
-                }
-              ]
+              "name": "_content"
             }
           ]
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_content"
+        }
+      ]
+    },
+    "function": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "FIELD",
+          "name": "name",
+          "content": {
+            "type": "SYMBOL",
+            "name": "identifier"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "{"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_block"
         },
         {
           "type": "STRING",
@@ -93,21 +119,8 @@
           "name": "identifier"
         },
         {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "STRING",
-              "value": ":"
-            },
-            {
-              "type": "STRING",
-              "value": "{"
-            }
-          ]
-        },
-        {
-          "type": "PATTERN",
-          "value": "\\n*"
+          "type": "STRING",
+          "value": ":"
         }
       ]
     },
@@ -115,7 +128,7 @@
       "type": "PATTERN",
       "value": "[a-z_]+"
     },
-    "content": {
+    "_content": {
       "type": "REPEAT1",
       "content": {
         "type": "CHOICE",
@@ -563,6 +576,10 @@
     {
       "type": "STRING",
       "value": "\t"
+    },
+    {
+      "type": "STRING",
+      "value": "\r"
     },
     {
       "type": "SYMBOL",

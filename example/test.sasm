@@ -14,23 +14,23 @@ one { 1 }
 zero { 0 }
 
 drop {
-  Pop
+  Let
 }
 
 it { #0 }
 
-do { $0 Pop }
+do { $0 Let }
 
 nothing : Ret
 
 when {
-  Pop; $0 = cond
-  Pop; $1 = func
+  Let; $0 = cond
+  Let; $1 = func
   do If $0 $[1] (it) (nothing)
 }
 
 fibo {
-  Pop; $0 = x
+  Let; $0 = x
   do If Le $0 2 (one) $[0] (fibo_other)
 }
 
@@ -39,7 +39,7 @@ fibo_other {
 }
 
 fact {
-  Pop; $0 = x
+  Let; $0 = x
   do If Le $0 1 (one) $[0] (fact_other)
 }
 
@@ -48,7 +48,7 @@ fact_other {
 }
 
 read_number {
-  Pop Input
+  Let Input
   to_digit $0
   do If is_digit $0 (start_read) (error)
 }
@@ -59,20 +59,20 @@ error {
 }
 
 start_read {
-  Pop Input
+  Let Input
   to_digit $0
   do If is_digit $0 (keep_read) (drop)
 }
 
 keep_read {
-  Pop Pop
+  Let Let
   Mul 10 $1
   Add $0
   start_read
 }
 
 is_digit {
-  Pop; $0 = x
+  Let; $0 = x
       Ge $0 '0'
   And Le $0 '9' ; return x >= 0 && x <= 9
 }
